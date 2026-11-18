@@ -1,0 +1,10 @@
+{
+  "principal": 600000.0,
+  "annual_rate_pct": 11.5,
+  "tenure_months": 36,
+  "processing_fee": 5898.82,
+  "insurance_premium": 4000.0,
+  "other_upfront_fees": null,
+  "monthly_fee": null,
+  "prepayment_penalty_pct": null
+}

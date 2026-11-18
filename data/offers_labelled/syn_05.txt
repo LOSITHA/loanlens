@@ -1,0 +1,6 @@
+LOAN OFFER
+- Amount: Rs 2,75,000
+- Tenure: 24 months
+- Interest: 23.0% per annum
+- Processing fee: Rs 2,999
+- Prepayment charges: 5% of outstanding principal

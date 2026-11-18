@@ -1,0 +1,6 @@
+Particulars | Details
+Loan amount | Rs 1,00,000
+Tenure | 12 months
+ROI | 17.5% p.a.
+Processing fee | 2% of loan amount + 18% GST
+Account maintenance | Rs 150 per month

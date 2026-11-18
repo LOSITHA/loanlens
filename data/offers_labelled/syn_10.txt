@@ -1,0 +1,9 @@
+Particulars | Details
+Loan amount | Rs 5,50,000
+Tenure | 48 months
+ROI | 23.5% p.a.
+Processing fee | Rs 4,999
+Credit life insurance (mandatory) | Rs 9,000 one-time
+Documentation charges | Rs 2,000
+Account maintenance | Rs 150 per month
+Prepayment charges | 3% of outstanding principal

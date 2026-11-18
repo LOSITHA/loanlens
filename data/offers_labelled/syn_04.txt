@@ -1,0 +1,5 @@
+Dear Customer, you are pre-approved for a personal loan of Rs 3,25,000 for 12 months at 19.5% p.a. (reducing balance).
+Processing fee: 2% of loan amount + 18% GST.
+Documentation charges: Rs 500.
+Account maintenance: Rs 99 per month.
+Prepayment charges: 4% of outstanding principal.

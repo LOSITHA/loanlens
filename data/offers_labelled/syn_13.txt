@@ -1,0 +1,7 @@
+LOAN OFFER
+- Amount: Rs 5,25,000
+- Tenure: 6 months
+- Interest: 10.5% per annum
+- Processing fee: 1.5% of loan amount
+- Documentation charges: Rs 1,200
+- Account maintenance: Rs 150 per month

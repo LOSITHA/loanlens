@@ -1,0 +1,5 @@
+Particulars | Details
+Loan amount | Rs 1,75,000
+Tenure | 6 months
+ROI | 21.5% p.a.
+Prepayment charges | 4% of outstanding principal

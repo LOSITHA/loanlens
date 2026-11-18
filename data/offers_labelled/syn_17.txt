@@ -1,0 +1,5 @@
+LOAN OFFER
+- Amount: Rs 1,75,000
+- Tenure: 12 months
+- Interest: 12.5% per annum
+- Processing fee: 3% of loan amount + 18% GST
