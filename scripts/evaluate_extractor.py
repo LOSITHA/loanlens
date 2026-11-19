@@ -31,14 +31,15 @@ files = sorted(glob.glob("data/offers_labelled/*.txt"))
 for path in files:
     key = os.path.basename(path)
     truth = json.load(open(path.replace(".txt", ".json")))
-        if key not in cache:
+    if key not in cache:
         try:
             cache[key] = extract_offer(open(path, encoding="utf-8").read()).model_dump()
         except Exception as e:
-            print(f"Stopped at {key}: {type(e).__name__}. {len(cache)} offers are cached. Rerun later.")
+            print(f"Stopped at {key}: {type(e).__name__}: {str(e)[:300]}. {len(cache)} offers are cached. Rerun later.")
             raise SystemExit
         json.dump(cache, open(cache_path, "w"), indent=1)
         time.sleep(1.5)
+        print(f"extracted {key} ({len(cache)}/30)")
     pred = cache[key]
     n += 1
     for f in FIELDS:

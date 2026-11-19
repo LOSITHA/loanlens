@@ -68,5 +68,135 @@
   "other_upfront_fees": null,
   "monthly_fee": null,
   "prepayment_penalty_pct": null
+ },
+ "syn_07.txt": {
+  "principal": 500000.0,
+  "annual_rate_pct": 19.5,
+  "tenure_months": 48,
+  "processing_fee": 15000.0,
+  "insurance_premium": 2500.0,
+  "other_upfront_fees": 1200.0,
+  "monthly_fee": 49.0,
+  "prepayment_penalty_pct": 5.0
+ },
+ "syn_08.txt": {
+  "principal": 175000.0,
+  "annual_rate_pct": 11.5,
+  "tenure_months": 24,
+  "processing_fee": 2999.0,
+  "insurance_premium": 9000.0,
+  "other_upfront_fees": null,
+  "monthly_fee": null,
+  "prepayment_penalty_pct": 3.0
+ },
+ "syn_09.txt": {
+  "principal": 275000.0,
+  "annual_rate_pct": 10.0,
+  "tenure_months": 12,
+  "processing_fee": 9735.0,
+  "insurance_premium": 6500.0,
+  "other_upfront_fees": 2000.0,
+  "monthly_fee": null,
+  "prepayment_penalty_pct": null
+ },
+ "syn_10.txt": {
+  "principal": 550000.0,
+  "annual_rate_pct": 23.5,
+  "tenure_months": 48,
+  "processing_fee": 4999.0,
+  "insurance_premium": 9000.0,
+  "other_upfront_fees": 2000.0,
+  "monthly_fee": 150.0,
+  "prepayment_penalty_pct": 3.0
+ },
+ "syn_11.txt": {
+  "principal": 150000.0,
+  "annual_rate_pct": 24.0,
+  "tenure_months": 24,
+  "processing_fee": 1770.0,
+  "insurance_premium": null,
+  "other_upfront_fees": null,
+  "monthly_fee": null,
+  "prepayment_penalty_pct": null
+ },
+ "syn_12.txt": {
+  "principal": 150000.0,
+  "annual_rate_pct": 22.0,
+  "tenure_months": 36,
+  "processing_fee": 2999.0,
+  "insurance_premium": 2500.0,
+  "other_upfront_fees": 2000.0,
+  "monthly_fee": null,
+  "prepayment_penalty_pct": 5.0
+ },
+ "syn_13.txt": {
+  "principal": 525000.0,
+  "annual_rate_pct": 10.5,
+  "tenure_months": 6,
+  "processing_fee": 7875.0,
+  "insurance_premium": null,
+  "other_upfront_fees": 1200.0,
+  "monthly_fee": 150.0,
+  "prepayment_penalty_pct": null
+ },
+ "syn_14.txt": {
+  "principal": 875000.0,
+  "annual_rate_pct": 13.5,
+  "tenure_months": 48,
+  "processing_fee": 17500.0,
+  "insurance_premium": null,
+  "other_upfront_fees": 750.0,
+  "monthly_fee": null,
+  "prepayment_penalty_pct": null
+ },
+ "syn_15.txt": {
+  "principal": 575000.0,
+  "annual_rate_pct": 18.5,
+  "tenure_months": 36,
+  "processing_fee": 999.0,
+  "insurance_premium": null,
+  "other_upfront_fees": null,
+  "monthly_fee": 150.0,
+  "prepayment_penalty_pct": 2.0
+ },
+ "syn_16.txt": {
+  "principal": 75000.0,
+  "annual_rate_pct": 21.0,
+  "tenure_months": 24,
+  "processing_fee": 1999.0,
+  "insurance_premium": null,
+  "other_upfront_fees": null,
+  "monthly_fee": null,
+  "prepayment_penalty_pct": null
+ },
+ "syn_17.txt": {
+  "principal": 175000.0,
+  "annual_rate_pct": 12.5,
+  "tenure_months": 12,
+  "processing_fee": 6195.0,
+  "insurance_premium": null,
+  "other_upfront_fees": null,
+  "monthly_fee": null,
+  "prepayment_penalty_pct": null
+ },
+ "syn_18.txt": {
+  "principal": 175000.0,
+  "annual_rate_pct": 21.5,
+  "tenure_months": 6,
+  "processing_fee": null,
+  "insurance_premium": null,
+  "other_upfront_fees": null,
+  "monthly_fee": null,
+  "prepayment_penalty_pct": 4.0
+ },
+ "syn_19.txt": {
+  "principal": 175000.0,
+  "annual_rate_pct": 21.0,
+  "tenure_months": 48,
+  "processing_fee": 5898.82,
+  "insurance_premium": 4000.0,
+  "other_upfront_fees": 2000.0,
+  "monthly_fee": null,
+  "prepayment_penalty_pct": 5.0
  }
 }

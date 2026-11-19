@@ -1,10 +1,11 @@
-import time
-from google.genai import errors
-
 import os
+import sys
+import time
+import httpx
 from dotenv import load_dotenv
 from pydantic import BaseModel
 from google import genai
+from google.genai import errors
 
 load_dotenv()
 
@@ -31,9 +32,9 @@ Offer text:
 """
 
 
-def extract_offer(text: str, retries: int = 5) -> LoanOffer:
+def extract_offer(text: str, retries: int = 4) -> LoanOffer:
     client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
-    models = [os.getenv("GEMINI_MODEL", "gemini-3.8-flash")]
+    models = [os.getenv("GEMINI_MODEL") or "gemini-3.8-flash"]
     fallback = os.getenv("GEMINI_FALLBACK_MODEL")
     if fallback:
         models.append(fallback)
@@ -53,18 +54,21 @@ def extract_offer(text: str, retries: int = 5) -> LoanOffer:
                 )
                 return LoanOffer.model_validate_json(resp.text)
             except errors.APIError as e:
+                last_error = e
                 code = getattr(e, "code", None)
-                               if code == 429:                  # quota used up: skip to the next model
-                    last_error = e
+                print(f"[{model}] API error {code}: {str(e)[:200]}", file=sys.stderr)
+                if code == 429:                  # quota used up: try next model
                     break
                 if code in (500, 503):           # busy: wait, retry
-                    last_error = e
                     time.sleep(min(2 ** attempt, 30))
-                else:
-                    raise                          # real bug: show it
-    raise last_error
-    return LoanOffer.model_validate_json(resp.text)
-
+                    continue
+                raise                            # real bug: show it
+            except httpx.TransportError as e:    # wifi dropped: wait, retry
+                last_error = e
+                print(f"[{model}] network error: {e}", file=sys.stderr)
+                time.sleep(min(2 ** attempt, 30))
+    raise RuntimeError(f"Extraction failed. Last error: {last_error!r}")
 
 def offer_upfront_fees(o: LoanOffer) -> float:
     return sum(x or 0 for x in (o.processing_fee, o.insurance_premium, o.other_upfront_fees))
+
