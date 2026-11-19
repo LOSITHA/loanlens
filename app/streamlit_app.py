@@ -107,7 +107,7 @@ if source == "Try a sample offer":
     if not cache:
         st.warning("No samples found yet. Paste an offer instead.")
         st.stop()
-    key = st.selectbox("Pick a sample", sorted(cache), format_func=sample_label)
+    key = st.selectbox("Pick a sample", sorted(k for k in cache if k.startswith("syn_")), format_func=sample_label)
     path = os.path.join(ROOT, "data", "offers_labelled", key)
     if os.path.exists(path):
         st.text_area("The offer text", open(path, encoding="utf-8").read(), height=130, disabled=True)

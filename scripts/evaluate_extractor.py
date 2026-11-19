@@ -1,4 +1,4 @@
-import glob, json, os, time
+import glob, json, os, sys, time
 from datetime import date
 from loanlens.extractor import extract_offer, offer_upfront_fees, LoanOffer
 from loanlens.xirr import true_loan_rate
@@ -27,7 +27,7 @@ cache = json.load(open(cache_path)) if os.path.exists(cache_path) else {}
 correct = {f: 0 for f in FIELDS}
 halluc = miss = n = 0
 rate_errs, failures = [], []
-files = sorted(glob.glob("data/offers_labelled/*.txt"))
+files = sorted(glob.glob((sys.argv[1] if len(sys.argv) > 1 else "data/offers_labelled") + "/*.txt"))
 for path in files:
     key = os.path.basename(path)
     truth = json.load(open(path.replace(".txt", ".json")))
