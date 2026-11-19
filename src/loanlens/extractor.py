@@ -34,7 +34,7 @@ Offer text:
 
 def extract_offer(text: str, retries: int = 4) -> LoanOffer:
     client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
-    models = [os.getenv("GEMINI_MODEL") or "gemini-3.8-flash"]
+    models = [(os.getenv("GEMINI_MODEL") or "gemini-3.8-flash").strip().lower().replace(" ", "-")]
     fallback = os.getenv("GEMINI_FALLBACK_MODEL")
     if fallback:
         models.append(fallback)
@@ -71,4 +71,5 @@ def extract_offer(text: str, retries: int = 4) -> LoanOffer:
 
 def offer_upfront_fees(o: LoanOffer) -> float:
     return sum(x or 0 for x in (o.processing_fee, o.insurance_premium, o.other_upfront_fees))
+
 
