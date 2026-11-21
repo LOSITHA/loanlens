@@ -14,8 +14,11 @@ sys.path.insert(0, os.path.join(ROOT, "src"))
 from loanlens.backtest import load_nifty, rolling_returns
 from loanlens.emi import emi
 from loanlens.explainer import build_facts, explain, explanation_points
+from loanlens import offer_cache
+from loanlens.adjust import after_costs_growth, price_hurdle, verdict_adjusted
 from loanlens.montecarlo import bootstrap_growth
-from loanlens.verdict import verdict, effective_prepay_rate_pct
+from loanlens.sanity import check_offer
+from loanlens.verdict import effective_prepay_rate_pct
 from loanlens.xirr import true_loan_rate
 
 # Palette from the mood board
@@ -147,8 +150,9 @@ def sim_data(years):
 
 
 @st.cache_data
-def run_verdict(rate, years, penalty):
-    return verdict(prices(), rate, years, penalty_pct=penalty, n_sims=5000)
+def run_verdict(rate, years, penalty, tax, dividend):
+    return verdict_adjusted(prices(), rate, years, penalty_pct=penalty, tax_pct=tax,
+                            dividend_pct=dividend, n_sims=5000)
 
 
 def load_cache():
@@ -163,11 +167,19 @@ def sample_label(k):
     return k
 
 
+LIVE_CACHE = os.path.join(ROOT, "outputs", "live_cache.json")
+
+
 def read_offer(text):
-    """Try the AI reader first; fall back to the built-in rule-based reader."""
+    """Saved reading first (no AI call), then the AI reader, then the built-in rule-based reader."""
+    saved = offer_cache.get(LIVE_CACHE, text)
+    if saved:
+        return saved, "saved"
     try:
         from loanlens.extractor import extract_offer
-        return extract_offer(text, retries=2).model_dump(), "ai"
+        fields = extract_offer(text, retries=2).model_dump()
+        offer_cache.put(LIVE_CACHE, text, fields)
+        return fields, "ai"
     except Exception:
         from loanlens.regex_extractor import extract_offer_regex
         return extract_offer_regex(text), "rules"
@@ -212,6 +224,7 @@ def kpi(label, value, detail, hot=False):
 
 # ================================================================== SIDEBAR: the loan offer
 fields, suffix, via = None, "x", "sample"
+tax = dividend = 0.0
 with st.sidebar:
     st.markdown('<div class="sb-brand">LoanLens</div>'
                 '<div class="sb-tag"><i>See what a loan really costs.</i></div>', unsafe_allow_html=True)
@@ -246,6 +259,8 @@ with st.sidebar:
         if fields and via == "rules":
             st.warning("The AI reader is busy or unavailable, so the simpler built-in reader was used. "
                        "Please check the details below.")
+        if fields and via == "saved":
+            st.caption("Reused a saved reading of this exact text, so no AI call was needed.")
 
     principal = rate = tenure = None
     penalty = proc = ins = other = monthly = 0.0
@@ -276,6 +291,18 @@ with st.sidebar:
         monthly = c[1].number_input("Fee every month (Rs)", min_value=0.0, step=10.0,
                                     value=float(fields["monthly_fee"] or 0), key="mf" + suffix)
 
+        st.markdown('<div class="sb-h">Investing assumptions (optional)</div>'
+                    '<div class="sb-sub">Both start at 0, which compares against the plain index price. '
+                    'Change them for a closer-to-real answer.</div>', unsafe_allow_html=True)
+        c = st.columns(2)
+        tax = c[0].number_input("Tax on gains (%)", min_value=0.0, max_value=40.0, step=0.5, value=0.0, key="tax",
+                                help="India taxes long-term gains on listed equity at 12.5%, with the first "
+                                     "Rs 1.25 lakh a year exempt. Here the tax is taken on the whole gain, "
+                                     "so it is slightly harsh. Please check current rules.")
+        dividend = c[1].number_input("Dividends (%)", min_value=0.0, max_value=5.0, step=0.1, value=0.0,
+                                     key="div", help="The Nifty 50 has recently paid about 1.2% a year in "
+                                                     "dividends. The price index in this app leaves them out.")
+
 # ================================================================== MAIN: the dashboard
 st.markdown('<div class="band"><div class="t">Your loan at a glance</div>'
             '<div class="s"><i>Every number and chart below updates</i> when you change the details on the left.</div></div>',
@@ -289,6 +316,8 @@ if not principal or rate is None or not tenure:
     st.stop()
 
 upfront = proc + ins + other
+for note in check_offer(principal, rate, tenure, penalty, upfront, monthly):
+    st.warning(note)
 try:
     true_rate = true_loan_rate(principal, rate, int(tenure), date.today(),
                                upfront_fees=upfront, monthly_fees=monthly) * 100
@@ -326,7 +355,8 @@ else:
             rets, ann, growth = sim_data(years)
             hurdle = effective_prepay_rate_pct(rate, penalty, years)
             prepay_value = spare * (1 + hurdle / 100) ** years
-            low, mid, high = (spare * np.percentile(growth, q) for q in (5, 50, 95))
+            grown = after_costs_growth(growth, years, tax, dividend)
+            low, mid, high = (spare * np.percentile(grown, q) for q in (5, 50, 95))
             outcomes = dict(spare=spare, prepay_value=prepay_value, invest_typical=mid, invest_bad=low)
             labels = ["Pay off<br>the loan", "Invest:<br>bad case", "Invest:<br>typical", "Invest:<br>good case"]
             vals = [prepay_value, low, mid, high]
@@ -340,13 +370,15 @@ else:
             fig.update_xaxes(showgrid=False, linecolor=LINE)
             show(style(fig, 330))
             st.caption("Bad case = 1 in 20 simulated futures did worse. Good case = 1 in 20 did better. "
-                       "The dotted line is what paying off the loan gives for sure.")
+                       "The dotted line is what paying off the loan gives for sure."
+                       + (" Investing figures are after the tax and dividends you set on the left."
+                          if tax or dividend else ""))
 
     with left:
         with st.container(key="card_a"):
             card_head("Pay off the loan early, or invest the money?",
                       "Chance that investing in the Nifty 50 beats the guaranteed saving from paying the loan down.")
-            v = run_verdict(rate, years, penalty)
+            v = run_verdict(rate, years, penalty, tax, dividend)
             avg = (v["hist_invest_wins_pct"] + v["mc_invest_wins_pct"]) / 2
             if v["clear"] and v["leaning"] == "prepay":
                 pill, head = "Clear answer", "Pay off the loan early."
@@ -364,6 +396,7 @@ else:
             # curve: exact for any loan rate, because every point comes from the same stored simulations
             xs = np.round(np.arange(4, max(18, int(rate) + 3) + 0.001, 0.25), 2)
             hurdles = ((((1 + xs / 100) ** years) / (1 + penalty / 100)) ** (1 / years) - 1)
+            hurdles = price_hurdle(hurdles, years, tax, dividend)
             hist = [(rets > h).mean() * 100 for h in hurdles]
             mc = [(ann > h).mean() * 100 for h in hurdles]
             fig = go.Figure()
@@ -429,7 +462,8 @@ with st.expander("How this works, and its limits"):
     st.write("The AI only reads the offer and, if you ask, rewords the explanation. All the maths is done by tested code. "
              "Investing is measured against the Nifty 50 index since 2007, both on real past periods and on thousands "
              "of simulated futures built from reshuffled real market data.")
-    st.write("Limits: the index excludes dividends, results are before tax, overlapping past periods are not "
+    st.write("Limits: unless you add them in the left panel, the index excludes dividends and results are before tax "
+             "(tax there is a simple estimate on the whole gain). Overlapping past periods are not "
              "independent trials, and past returns do not guarantee future ones. Fees you have already paid "
              "are not counted in the prepay-or-invest answer.")
 st.markdown('<p class="note">LoanLens is a learning tool and not financial advice.</p>', unsafe_allow_html=True)
