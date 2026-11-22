@@ -1,0 +1,3 @@
+HDFC-style SMS (example): Your purchase of Rs 42,000 on card XX4821 is converted to EMI.
+Tenure 12 months @ 15% p.a. EMI Rs 3,791. Processing fee Rs 199 + GST. Foreclosure charge 3% of outstanding
+principal. Total interest payable Rs 3,490. T&C apply.

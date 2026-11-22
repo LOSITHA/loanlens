@@ -1,0 +1,24 @@
+KEY FACTS STATEMENT (KFS) - PERSONAL LOAN
+Lender: Lakeview Bank Ltd. (example)    Date: 14-Jan-2026
+Part 1: Interest rate and fees/charges
+1. Loan proposal/account no.: LV/PL/2026/004417    Type of loan: Personal Loan
+2. Sanctioned Loan amount (in Rs): Rs 3,00,000
+3. Disbursal schedule: (i) Disbursement in stages or 100% upfront: 100% upfront
+4. Loan term (year/months/days): 36 months
+5. Instalment details: Type of instalments: Equated Monthly Instalments   Number of EPIs: 36
+   EPI (Rs): Rs 10,036   Commencement of repayment, post sanction: 1 month
+6. Interest rate (%) and type (fixed or floating or hybrid): 12.50% p.a., Fixed
+8. Fee/Charges (in Rs or %):  (A) Payable to the RE
+   (i) Processing fees (incl. GST): Rs 5,310 (1.5% of loan amount plus 18% GST), one-time
+   (B) Payable to a third party through RE
+   (ii) Insurance charges: Rs 4,200, one-time
+   (iii) Valuation fees: Not applicable   (iv) Any other charges: Nil
+9. Annual Percentage Rate (APR) (%): 15.82%
+10. Details of Contingent Charges (in Rs or %, as applicable)
+   (i) Penal charges, if any, in case of delayed payment: 2% per month on overdue amount
+   (iii) Foreclosure charges, if applicable: 4% of principal outstanding
+   (iv) Charges for switching of loans from floating to fixed rate and vice versa: Not applicable
+Part 2: Other qualitative information
+1. Clause of Loan agreement relating to engagement of recovery agents: Clause 17
+3. Nodal grievance redressal officer: Mr. A. Rao, Chief Manager, Mumbai
+4. Whether the loan is, or in future may be, subject to transfer to other REs or securitisation: Yes

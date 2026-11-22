@@ -1,0 +1,10 @@
+Loan Key Facts - Greenfield Capital (example NBFC)
+Amount sanctioned: ₹1,50,000/-
+Tenure: 24 months | EMI: ₹7,489 | Rate of interest: 18% per annum (fixed, reducing balance)
+One-time charges deducted from disbursal:
+  Payable to lender: Processing fee ₹2,360 (inclusive of GST)
+                     Documentation charges ₹590 (inclusive of GST)
+  Payable to third party via lender: Credit life insurance ₹6,500
+APR (including all charges): 27.92%
+If you close the loan early: 5% of the principal outstanding at the time of closure.
+Late payment: Rs 500 per missed instalment.

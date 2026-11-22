@@ -1,0 +1,13 @@
+KEY FACTS STATEMENT
+Sundar Finance & Co. (example)   Loan type: Personal Loan - floating rate
+Sr. 2  Sanctioned loan amount (Rs): 5,00,000
+Sr. 4  Loan term: 5 years
+Sr. 5  Instalment details: EMI, 60 instalments, EPI Rs 11,059
+Sr. 6  Interest rate and type: Floating
+Sr. 7  Floating rate details: Reference benchmark: External Benchmark Rate; Benchmark rate (B) 5.50%;
+       Spread (S) 6.25%; Final rate (R = B + S) 11.75%; Reset periodicity: 3 months.
+       Impact of 25 bps change in R: EPI changes by Rs 63
+Sr. 8  Fee/charges: Processing fee (incl. GST) Rs 4,425 (0.75% + GST); insurance: not taken; other charges: Nil
+Sr. 9  APR: 12.84%
+Sr. 10 Contingent charges: Foreclosure / prepayment charges: Nil for individual borrowers on floating rate loans.
+       Penal charges: 2% p.a. over the contracted rate.

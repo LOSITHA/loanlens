@@ -258,5 +258,25 @@
   "other_upfront_fees": null,
   "monthly_fee": null,
   "prepayment_penalty_pct": null
+ },
+ "hard_01.txt": {
+  "principal": 300000.0,
+  "annual_rate_pct": 11.99,
+  "tenure_months": 36,
+  "processing_fee": 4500.0,
+  "insurance_premium": 8000.0,
+  "other_upfront_fees": null,
+  "monthly_fee": null,
+  "prepayment_penalty_pct": 3.0
+ },
+ "hard_02.txt": {
+  "principal": 500000.0,
+  "annual_rate_pct": 10.5,
+  "tenure_months": 60,
+  "processing_fee": 2950.0,
+  "insurance_premium": null,
+  "other_upfront_fees": 300.0,
+  "monthly_fee": null,
+  "prepayment_penalty_pct": null
  }
 }

@@ -1,0 +1,9 @@
+QuickRupee Digital Loan - Key Facts (example app)
+Loan amount: Rs 50,000      Repayment period: 6 months
+Interest: 24% p.a.      EMI: Rs 9,025 (includes the account fee)
+Processing fee: Rs 1,770 (incl. GST), deducted at disbursal
+Account maintenance fee: Rs 99 every month
+Cooling-off period: you may exit within 3 days of disbursal by repaying the principal and interest for those days,
+with no penalty.
+Prepayment after the cooling-off period: 2% of the amount prepaid.
+APR: 50.23%
