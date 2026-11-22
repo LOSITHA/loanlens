@@ -278,5 +278,15 @@
   "other_upfront_fees": 300.0,
   "monthly_fee": null,
   "prepayment_penalty_pct": null
+ },
+ "hard_03.txt": {
+  "principal": 150000.0,
+  "annual_rate_pct": 14.25,
+  "tenure_months": 24,
+  "processing_fee": 2358.82,
+  "insurance_premium": 3500.0,
+  "other_upfront_fees": null,
+  "monthly_fee": null,
+  "prepayment_penalty_pct": null
  }
 }
