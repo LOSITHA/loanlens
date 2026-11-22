@@ -106,7 +106,7 @@ Read this honestly:
 
 ### Does the answer depend on the simulation settings?
 
-We reran the simulation with 3 block lengths (10, 21 and 63 trading days) and 5 random seeds, for loan rates from 6% to 22% and both horizons (no prepayment charge):
+I reran the simulation with 3 block lengths (10, 21 and 63 trading days) and 5 random seeds, for loan rates from 6% to 22% and both horizons (no prepayment charge):
 
 - Changing the random seed moved results by at most 2.2 percentage points.
 - For loans at **14% and above**, paying off early wins under both methods, in every setting.
